@@ -1,3 +1,3 @@
-# Koala UI
+# Koala UI 🐻
 
 Coming soon
