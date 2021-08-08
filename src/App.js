@@ -1,25 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {
+  useState
+} from 'react';
+
+import ThemeProvider, { themes } from "./components/theme";
+import { Button, CheckBox, TextInput, Label, Container } from "./components";
+
 
 function App() {
+  const [checked, setChecked] = useState(false);
+  const [name, setName] = useState("Patrice");
+
+  function onChangeHandler(event) {
+    setName(event.target.value);
+  }
+
+  const style = {
+    textAlign: 'center',
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <ThemeProvider value={themes.green}>
+      <Container style={style}>
+        <h1>Koala UI</h1>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+        Koala theme is a modern web framework to accelerate front-end web development using Reactjs.
+        It has been designed with simplicity.
+        Just import the elements you need and start using. It is highly customizable.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+        <Button
+          onClick={() => alert("Hello world")}>
+          Button
+        </Button>
+        <Label>
+          <CheckBox
+            checked={checked}
+            onChange={() => setChecked(!checked)} />
+        </Label>
+        <Label
+          style={{
+            display: 'inline-block',
+            margin: '10px',
+          }}
+        >Show text box</Label>
+        {
+          checked && <TextInput
+            value={name}
+            onChange={onChangeHandler} />
+        }
+      </Container>
+    </ThemeProvider>
+  )
 }
 
 export default App;
+
